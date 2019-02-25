@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "886954582313",
+    "firebase_url": "https://wootrixv2apps.firebaseio.com",
+    "project_id": "wootrixv2apps",
+    "storage_bucket": "wootrixv2apps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886954582313:android:a7c04098238e8036",
+        "android_client_info": {
+          "package_name": "com.ta.wootrix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "886954582313-11hv9o7iajmn7ujqa7uifautecs9ic4v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPHM4wDBqRC43lc2iQTjBAwqGVU-O_U3I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

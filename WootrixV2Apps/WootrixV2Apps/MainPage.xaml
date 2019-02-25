@@ -5,27 +5,17 @@
              xmlns:local="clr-namespace:WootrixV2Apps"
              x:Class="WootrixV2Apps.MainPage">
     <ContentPage.Content>
-        <StackLayout Margin="2">
-		<StackLayout Orientation="Horizontal">
-			<Button Text="Back" HorizontalOptions="StartAndExpand" Clicked="OnBackButtonClicked" />
-			<!--<Button Text="Forward" HorizontalOptions="EndAndExpand" Clicked="OnForwardButtonClicked" />-->
-		</StackLayout>
-		<!-- WebView needs to be given height and width request within layouts to render. -->
-		<WebView x:Name="webView" WidthRequest="1000" HeightRequest="1000" 
-                 Source="http://wootrixv2-test.us-west-2.elasticbeanstalk.com"/>
-	</StackLayout>
-    </ContentPage.Content>
-</ContentPage>
-<!--<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:WootrixV2Apps"
-             x:Class="WootrixV2Apps.MainPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <WebView HorizontalOptions="FillAndExpand"
-                 VerticalOptions="FillAndExpand" 
-                 Margin="0"  Source="http://wootrixv2-test.us-west-2.elasticbeanstalk.com"/>
-
+        <StackLayout Margin="1">
+		    <StackLayout Orientation="Horizontal" >
+                <Button Text="&lt;" HorizontalOptions="StartAndExpand" Clicked="OnBackButtonClicked" />
+                <Label x:Name="textLabel" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Button x:Name="logTokenButton" Text="Log Token" HorizontalOptions="StartAndExpand" Clicked="OnLogTokenButtonClicked" />
+            </StackLayout>
+		    <!-- WebView needs to be given height and width request within layouts to render. -->
+            <WebView x:Name="webView" WidthRequest="1000" HeightRequest="1000" 
+                     Source="http://wootrixv2-test.us-west-2.elasticbeanstalk.com"/>
+            
         </StackLayout>
     </ContentPage.Content>
-</ContentPage>-->
+</ContentPage>
+

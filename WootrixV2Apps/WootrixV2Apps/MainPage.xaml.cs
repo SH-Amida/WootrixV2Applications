@@ -1,18 +1,30 @@
-﻿using Android.App;
+﻿using Android.Util;
+using Plugin.PushNotification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+
+
 namespace WootrixV2Apps
 {
-
     public partial class MainPage : ContentPage
     {
-        
+
+        public string Message
+        {
+            get
+            {
+                return textLabel.Text;
+            }
+            set
+            {
+                textLabel.Text = value;
+            }
+        }
 
         public MainPage()
         {
@@ -39,24 +51,13 @@ namespace WootrixV2Apps
             }
         }
 
-        //protected override bool OnBackButtonPressed()
-        //{
-        //    Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);            
-        //    return false;
-        //    //return base.OnBackButtonPressed();
-        //}
+        void OnLogTokenButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine($"Firebase.Current.Token from MainPage.cs: {CrossPushNotification.Current.Token}");
+            //Log.Debug("Firebase", "InstanceID token: " + FirebaseInstanceId.Instance.Token);
 
-        //protected override bool OnBackButtonPressed()
-        //{
+        }
 
-        //    return true;
-        //}
 
-        //public override void OnBackPressed()
-        //{
-        //    if (App.IsRootPage || App.AuthenticationContext == null) return;
-        //    base.OnBackPressed();
-        //}
     }
-
 }
