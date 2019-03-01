@@ -12,6 +12,9 @@ using Firebase.Messaging;
 using Firebase.Iid;
 using Android.Util;
 
+using Android.Support.V7.App;
+using System.Threading.Tasks;
+
 
 namespace WootrixV2Apps.Droid
 {
@@ -19,51 +22,76 @@ namespace WootrixV2Apps.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         ///Toolbar toolbar;
+        WootrixV2Apps.MainPage mPage;
+        const string TAG = "MainActivity.cs";
 
         protected override void OnCreate(Bundle bundle)
         {
+            Android.Util.Log.Debug(TAG, "Location: OnCreate*************");
 
 
-
-            //ToolbarResource toolbar = Resource.Layout.Toolbar;
+            //TabLayoutResource = Resource.Layout.Tabbar;
+            //ToolbarResource = Resource.Layout.Toolbar;
+            
             base.OnCreate(bundle);
-            //CreateNotificationChannel();
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
-            PushNotificationManager.ProcessIntent(this, Intent);
-            Console.WriteLine($"FirebaseInstanceId.Instance.Token from MainActivity.cs: {FirebaseInstanceId.Instance.Token}");
-
+            System.Diagnostics.Debug.WriteLine($"Check GPS*****************");
+            IsPlayServicesAvailable();
+            System.Diagnostics.Debug.WriteLine($"Creat Channel*****************");
+            CreateNotificationChannel();
+            
+            //System.Diagnostics.Debug.WriteLine($"Subscribed To TOPIC: all*****************");
+            //FirebaseMessaging.Instance.SubscribeToTopic("all");
+            // PushNotificationManager.ProcessIntent(this, Intent);
+            //
+            //if (Intent.Extras != null)
+            //{
+            //    foreach (var key in Intent.Extras.KeySet())
+            //    {
+            //        var value = Intent.Extras.GetString(key);
+            //        Android.Util.Log.Debug(TAG, "Key: {0} Value: {1}", key, value);
+            //    }
+            //}
         }
 
-        protected override void OnNewIntent(Intent intent)
-        {
-            base.OnNewIntent(intent);
-            PushNotificationManager.ProcessIntent(this, intent);
-        }
-
-        //public bool IsPlayServicesAvailable()
+        //protected override void OnNewIntent(Intent intent)
         //{
-        //    int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
-        //    if (resultCode != ConnectionResult.Success)
-        //    {
-        //        if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
-        //            msgText.Text = GoogleApiAvailability.Instance.GetErrorString(resultCode);
-        //        else
-        //        {
-        //            msgText.Text = "This device is not supported";
-        //            Finish();
-        //        }
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        msgText.Text = "Google Play Services is available.";
-        //        return true;
-        //    }
+        //    Android.Util.Log.Debug(TAG, "Location: OnNewIntent*************");
+        //    base.OnNewIntent(intent);
+        //    PushNotificationManager.ProcessIntent(this, intent);
         //}
+
+        public bool IsPlayServicesAvailable()
+        {
+            Android.Util.Log.Debug(TAG, "Location: IsPlayServicesAvailable*************");
+            int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+            if (resultCode != ConnectionResult.Success)
+            {
+                if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
+                    Android.Util.Log.Debug(TAG, "GooglePlayServices Connection Error: " + GoogleApiAvailability.Instance.GetErrorString(resultCode));
+
+                
+                else
+                {
+                    
+                    Android.Util.Log.Debug(TAG, "This device is not supported");
+
+                    Finish();
+                }
+                return false;
+            }
+            else
+            {
+                
+                Android.Util.Log.Debug(TAG, "Google Play Services is available.");
+                return true;
+            }
+        }
 
         void CreateNotificationChannel()
         {
+            Android.Util.Log.Debug(TAG, "Location: CreateNotificationChannel*************");
             if (Build.VERSION.SdkInt < BuildVersionCodes.O)
             {
                 // Notification channels are new in API 26 (and not a part of the

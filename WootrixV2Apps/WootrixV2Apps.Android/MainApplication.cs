@@ -9,13 +9,13 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Plugin.PushNotification;
 
 
 using Android.Gms.Common;
 using Firebase.Messaging;
 using Firebase.Iid;
 using Android.Util;
+using Plugin.PushNotification;
 
 namespace WootrixV2Apps.Droid
 {
@@ -29,13 +29,13 @@ namespace WootrixV2Apps.Droid
         public override void OnCreate()
         {
             base.OnCreate();
-            
+
             //If debug you should reset the token each time.
-            #if DEBUG
+#if DEBUG
             PushNotificationManager.Initialize(this, true);
-            #else
+#else
             PushNotificationManager.Initialize(this, false);
-            #endif
+#endif
 
             //Set the default notification channel for your app when running Android Oreo
             if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
@@ -47,7 +47,7 @@ namespace WootrixV2Apps.Droid
                 PushNotificationManager.DefaultNotificationChannelName = "WootrixV2ChannelName";
 
             }
-            FirebaseMessaging.Instance.SubscribeToTopic("all");
+            //FirebaseMessaging.Instance.SubscribeToTopic("all");
             //Log.Debug("all", "Subscribed to remote notifications");
             Console.WriteLine($"Firebase.Current.Token from MainApplication.cs: {CrossPushNotification.Current.Token}");
             //Console.WriteLine($"FirebaseInstanceId.Instance.Token from from MainApplication.cs: {FirebaseInstanceId.Instance.Token}");
@@ -58,7 +58,7 @@ namespace WootrixV2Apps.Droid
 
             };
 
-            
+
         }
     }
 }

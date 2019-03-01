@@ -324,6 +324,9 @@
     <PackageReference Include="System.Xml.ReaderWriter">
       <Version>4.3.1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Core">
+      <Version>70.1601.0-preview2</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.169046-pre5" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

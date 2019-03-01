@@ -6,27 +6,24 @@ using System.Linq;
 using System.Text;
 
 
-
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace WootrixV2Apps
 {
     public partial class App : Application
     {
+        const string TAG = "App.xaml.cs";
         WootrixV2Apps.MainPage mPage;
         public App()
         {
+            Android.Util.Log.Debug(TAG, "Location: App Constructor*************");
             InitializeComponent();
 
             mPage = new WootrixV2Apps.MainPage()
             {
-                Message = "Hello Push Notifications!"
+                //Message = "Hello Push Notifications!"
             };
-
-            MainPage = new NavigationPage(mPage);
-            //MainPage = new MainPage();
-
-            // The root page of your application
-            //MainPage = new NavigationPage(new MainPage());
+           
+            MainPage = new NavigationPage(mPage);            
         }
 
         protected override void OnStart()
@@ -38,7 +35,7 @@ namespace WootrixV2Apps
             };
             System.Diagnostics.Debug.WriteLine($"TOKEN: {CrossPushNotification.Current.Token}");
             Console.WriteLine($"Firebase.Current.Token: {CrossPushNotification.Current.Token}");
-            
+
             CrossPushNotification.Current.OnNotificationReceived += (s, p) =>
             {
                 try
@@ -48,7 +45,7 @@ namespace WootrixV2Apps
                     {
                         Device.BeginInvokeOnMainThread(() =>
                         {
-                            mPage.Message = $"{p.Data["body"]}";
+                            //mPage.Message = $"{p.Data["body"]}";
                         });
 
                     }
@@ -74,7 +71,7 @@ namespace WootrixV2Apps
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        mPage.Message = p.Identifier;
+                        //mPage.Message = p.Identifier;
                     });
                 }
                 else if (p.Data.ContainsKey("color"))
@@ -93,7 +90,7 @@ namespace WootrixV2Apps
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        mPage.Message = $"{p.Data["aps.alert.title"]}";
+                        //mPage.Message = $"{p.Data["aps.alert.title"]}";
                     });
 
                 }
@@ -113,7 +110,5 @@ namespace WootrixV2Apps
         {
             // Handle when your app resumes
         }
-
-
     }
 }

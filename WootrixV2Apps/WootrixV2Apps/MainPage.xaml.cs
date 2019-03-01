@@ -1,5 +1,4 @@
 ﻿using Android.Util;
-using Plugin.PushNotification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +11,7 @@ using Xamarin.Forms;
 namespace WootrixV2Apps
 {
     public partial class MainPage : ContentPage
-    {
-
-        public string Message
-        {
-            get
-            {
-                return textLabel.Text;
-            }
-            set
-            {
-                textLabel.Text = value;
-            }
-        }
+    {        
 
         public MainPage()
         {
@@ -51,12 +38,7 @@ namespace WootrixV2Apps
             }
         }
 
-        void OnLogTokenButtonClicked(object sender, EventArgs e)
-        {
-            Console.WriteLine($"Firebase.Current.Token from MainPage.cs: {CrossPushNotification.Current.Token}");
-            //Log.Debug("Firebase", "InstanceID token: " + FirebaseInstanceId.Instance.Token);
-
-        }
+       
 
 
     }
