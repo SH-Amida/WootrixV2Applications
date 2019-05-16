@@ -14,7 +14,6 @@ namespace WootrixV2Apps
         WootrixV2Apps.MainPage mPage;
         public App()
         {
-            Android.Util.Log.Debug(TAG, "Location: App Constructor*************");
             InitializeComponent();
 
             mPage = new WootrixV2Apps.MainPage()
